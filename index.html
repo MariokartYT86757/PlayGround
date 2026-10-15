@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#0e1a2b" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Bloom Kart Sprint — original mini kart racer</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="game" aria-label="Top-down kart racing game"></canvas>
+
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="pill" id="hud-lap">LAP 1/3</div>
+      <div class="pill" id="hud-pos">4TH</div>
+      <div class="pill" id="hud-time">0:00.0</div>
+    </div>
+    <div class="hud-item">
+      <div id="item-slot" class="item-empty">—</div>
+    </div>
+  </div>
+
+  <div id="screen-title" class="screen">
+    <div class="card">
+      <div class="logo">🌸 BLOOM KART <span>SPRINT</span></div>
+      <p class="sub">100% original mini kart racer. No Nintendo assets, characters, or tracks.</p>
+      <ul class="how">
+        <li>🏁 3 laps vs 3 rival bots</li>
+        <li>📦 Grab cubes for Turbo / Shield / Slick</li>
+        <li>📱 Touch: ◀ ▶ steer + GAS / DRIFT / ITEM</li>
+        <li>⌨️ Desktop: arrows / WASD + Space item, Shift drift</li>
+      </ul>
+      <label class="row">
+        <span>Racer color</span>
+        <input id="color-pick" type="color" value="#ff4d6d" />
+      </label>
+      <label class="row">
+        <span>Auto-gas (mobile friendly)</span>
+        <input id="autogas" type="checkbox" checked />
+      </label>
+      <button id="btn-start" class="big">START RACE</button>
+      <p class="tiny">Installable PWA • works offline • all art drawn in code</p>
+    </div>
+  </div>
+
+  <div id="screen-msg" class="screen hidden">
+    <div class="card center">
+      <div id="msg-big" class="msg-big">3</div>
+      <div id="msg-sub" class="sub">Get ready…</div>
+    </div>
+  </div>
+
+  <div id="screen-end" class="screen hidden">
+    <div class="card center">
+      <div class="logo">🏁 FINISH!</div>
+      <div id="end-place" class="msg-big">1ST!</div>
+      <div id="end-time" class="sub">0:00.0</div>
+      <div id="end-best" class="sub">Best lap —</div>
+      <button id="btn-again" class="big">RACE AGAIN</button>
+    </div>
+  </div>
+
+  <div id="touch" class="hidden">
+    <div class="t-left">
+      <button id="t-left" aria-label="steer left">◀</button>
+      <button id="t-right" aria-label="steer right">▶</button>
+    </div>
+    <div class="t-right">
+      <button id="t-item" aria-label="use item">🎁</button>
+      <button id="t-drift" aria-label="drift brake">DRIFT</button>
+      <button id="t-gas" aria-label="gas">GAS</button>
+    </div>
+  </div>
+</div>
+<script src="game.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
